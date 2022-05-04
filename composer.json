@@ -1,0 +1,31 @@
+{
+    "name": "blackbricksoftware/laravel-civicrm",
+    "description": "Tools for using CiviCRM data inside Laravel.",
+    "type": "library",
+    "require": {
+        "php": "^8.0.2",
+        "illuminate/database": "^9.11",
+        "illuminate/support": "^9.11"
+    },
+    "authors": [
+        {
+            "name": "David Hayes",
+            "email": "david@blackbricksoftware.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "BlackBrickSoftware\\LaravelCivicrm\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BlackBrickSoftware\\LaravelCivicrm\\LaravelCivicrmServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
