@@ -1,10 +1,10 @@
 <?php
 
-namespace BlackBrickSoftware\LaravelCivicrm;
+namespace BlackBrickSoftware\LaravelCiviCRM;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelCivicrmServiceProvider extends ServiceProvider
+class LaravelCiviCRMServiceProvider extends ServiceProvider
 {
   
   /**

@@ -16,13 +16,13 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "BlackBrickSoftware\\LaravelCivicrm\\": "src/"
+            "BlackBrickSoftware\\LaravelCiviCRM\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "BlackBrickSoftware\\LaravelCivicrm\\LaravelCivicrmServiceProvider"
+                "BlackBrickSoftware\\LaravelCiviCRM\\LaravelCiviCRMServiceProvider"
             ]
         }
     },
