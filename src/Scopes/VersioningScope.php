@@ -17,6 +17,6 @@ class VersioningScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('is_current_version', 1);
+        $builder->where('is_current_revision', 1);
     }
 }
