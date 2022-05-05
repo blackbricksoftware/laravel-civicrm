@@ -5,6 +5,7 @@ namespace BlackBrickSoftware\LaravelCiviCRM\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class VolunteerProject extends Model
@@ -22,21 +23,21 @@ class VolunteerProject extends Model
     {
         $projectRelationshipValue = $this->getVolunteerProjectRelationshipValue('volunteer_owner');
         return $this->belongsToMany(Contact::class, VolunteerProjectContact::class)
-            ->wherePivot('record_type_id', $ov->value);
+            ->wherePivot('record_type_id', $projectRelationshipValue->value);
     }
 
     public function managerContacts(): BelongsToMany
     {
         $projectRelationshipValue = $this->getVolunteerProjectRelationshipValue('volunteer_manager');
         return $this->belongsToMany(Contact::class, VolunteerProjectContact::class)
-            ->wherePivot('record_type_id', 2);
+            ->wherePivot('record_type_id', $projectRelationshipValue->value);
     }
 
     public function beneficiaryContacts(): BelongsToMany
     {
         $projectRelationshipValue = $this->getVolunteerProjectRelationshipValue('volunteer_beneficiary');
         return $this->belongsToMany(Contact::class, VolunteerProjectContact::class)
-            ->wherePivot('record_type_id', $ov->value);
+            ->wherePivot('record_type_id', $projectRelationshipValue->value);
     }
 
     protected function getVolunteerProjectRelationshipValue(string $name): OptionValue
