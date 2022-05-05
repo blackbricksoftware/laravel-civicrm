@@ -23,6 +23,14 @@ class Email extends Model
         return $this->belongsTo(LocationType::class);
     }
 
+    public function onHoldReason(): BelongsTo
+    {
+        $relation = $this->belongsTo(OptionValue::class, 'on_hold', 'value');
+        $query = $relation->getQuery();
+        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'email_on_hold'));
+        return $relation;
+    }
+
     public function scopePrimary(Builder $query): Builder
     {
         return $query->where('is_primary', 1);
