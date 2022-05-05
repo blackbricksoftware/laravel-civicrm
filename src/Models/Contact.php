@@ -2,6 +2,7 @@
 
 namespace BlackBrickSoftware\LaravelCiviCRM\Models;
 
+use BlackBrickSoftware\LaravelCiviCRM\Scopes\SoftDeletesScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,11 @@ class Contact extends Model
     use HasFactory;
 
     protected $table = 'civicrm_contact';
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new SoftDeletesScope);
+    }
 
     public function addresses(): HasMany
     {
