@@ -13,10 +13,6 @@ class IM extends Model
 
     protected $table = 'civicrm_im';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);

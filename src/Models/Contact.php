@@ -13,10 +13,6 @@ class Contact extends Model
 
     protected $table = 'civicrm_contact';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);

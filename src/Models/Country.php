@@ -13,10 +13,6 @@ class Country extends Model
 
     protected $table = 'civicrm_country';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function worldRegion(): BelongsTo
     {
         return $this->belongsTo(WorldRegion::class, 'region_id');

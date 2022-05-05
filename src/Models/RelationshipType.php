@@ -12,10 +12,6 @@ class RelationshipType extends Model
 
     protected $table = 'civicrm_relationship_type';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function scopeActive($query): Builder
     {
         return $query->where('is_active', 1);

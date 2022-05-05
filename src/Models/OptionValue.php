@@ -13,10 +13,6 @@ class OptionValue extends Model
 
     protected $table = 'civicrm_option_value';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function optionGroup(): BelongsTo
     {
       return $this->belongsTo(OptionGroup::class);

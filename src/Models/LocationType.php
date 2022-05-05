@@ -13,10 +13,6 @@ class LocationType extends Model
 
     protected $table = 'civicrm_location_type';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function scopeReserved(Builder $query): Builder
     {
         return $query->where('is_reserved', 1);

@@ -12,10 +12,6 @@ class ActivityContact extends Model
 
     protected $table = 'civicrm_activity_contact';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function contact(): BelongsTo
     {
       return $this->belongsTo(Contact::class);

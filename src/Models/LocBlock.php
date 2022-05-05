@@ -12,10 +12,6 @@ class LocBlock extends Model
 
     protected $table = 'civicrm_loc_block';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);

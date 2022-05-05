@@ -13,10 +13,6 @@ class VolunteerNeed extends Model
 
     protected $table = 'civicrm_volunteer_need';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);

@@ -13,10 +13,6 @@ class OptionGroup extends Model
 
     protected $table = 'civicrm_option_group';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function optionValues(): HasMany
     {
       return $this->hasMany(OptionValue::class);

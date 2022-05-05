@@ -16,10 +16,6 @@ class Activity extends Model
 
     protected $table = 'civicrm_activity';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     protected static function booted()
     {
         static::addGlobalScope(new SoftDeletesScope);

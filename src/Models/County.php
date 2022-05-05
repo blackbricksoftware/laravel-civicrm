@@ -13,10 +13,6 @@ class County extends Model
 
     protected $table = 'civicrm_county';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function stateProvince(): BelongsTo
     {
         return $this->belongsTo(StateProvince::class);

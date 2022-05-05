@@ -13,10 +13,6 @@ class Campaign extends Model
 
     protected $table = 'civicrm_campaign';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     // @todo public function campaignType(): BelongsTo
 
     // @todo public function status(): BelongsTo

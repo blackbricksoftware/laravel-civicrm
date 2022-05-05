@@ -11,7 +11,4 @@ class WorldRegion extends Model
 
     protected $table = 'civicrm_worldregion';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
 }

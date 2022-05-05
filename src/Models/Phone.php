@@ -13,10 +13,6 @@ class Phone extends Model
 
     protected $table = 'civicrm_phone';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);

@@ -13,10 +13,6 @@ class Relationship extends Model
 
     protected $table = 'civicrm_relationship';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function relationshipType(): BelongsTo
     {
         return $this->belongsTo(relationshipType::class);

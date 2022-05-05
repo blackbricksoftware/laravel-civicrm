@@ -13,10 +13,6 @@ class Address extends Model
 
     protected $table = 'civicrm_address';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function locationType(): BelongsTo
     {
         $relation = $this->belongsTo(OptionValue::class, 'activity_type_id', 'value');

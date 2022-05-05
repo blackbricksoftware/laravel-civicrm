@@ -13,10 +13,6 @@ class VolunteerProject extends Model
 
     protected $table = 'civicrm_volunteer_project';
 
-    protected $casts = [
-        'id' => 'int',
-    ];
-
     public function contacts(): BelongsToMany
     {
         return $this->belongsToMany(Contact::class, VolunteerProjectContact::class);
