@@ -1,10 +1,10 @@
 <?php
 
-namespace BlackBrickSoftware\LaravelCiviCRM;
+namespace BlackBrickSoftware\LaravelCiviCRM\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ActivityContact extends Model
 {
@@ -14,18 +14,25 @@ class ActivityContact extends Model
 
     protected $casts = [
         'id' => 'int',
-        'activity_id' => 'int',
-        'contact_id' => 'int',
-        'record_type_id' => 'int',
     ];
 
-    public function activity(): HasOne
+    public function contact(): BelongsTo
     {
-      return $this->hasOne(Activity::class);
+      return $this->belongsTo(Contact::class);
     }
 
-    public function activity(): HasOne
+    public function activity(): BelongsTo
     {
-      return $this->hasOne();
+      return $this->belongsTo(Activity::class);
+    }
+
+    public function getRecordTypeAttribute(): ?string
+    {
+      return match($this->record_type_id) {
+        1 => 'assignee',
+        2 => 'creator',
+        3 => 'target',
+        default => null,
+      };
     }
 }

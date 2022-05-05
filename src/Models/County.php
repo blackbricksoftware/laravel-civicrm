@@ -2,27 +2,28 @@
 
 namespace BlackBrickSoftware\LaravelCiviCRM\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class VolunteerAppeal extends Model
+class County extends Model
 {
     use HasFactory;
 
-    protected $table = 'civicrm_volunteer_appeal';
+    protected $table = 'civicrm_county';
 
     protected $casts = [
         'id' => 'int',
     ];
 
-    public function project(): BelongsTo
+    public function stateProvince(): BelongsTo
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(StateProvince::class);
     }
 
-    public function locBlock(): BelongsTo
+    public function scopeActive(Builder $query): Builder
     {
-        return $this->belongsTo(LocBlock::class);
+        return $query->where('is_active', 1);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace BlackBrickSoftware\LaravelCiviCRM;
+namespace BlackBrickSoftware\LaravelCiviCRM\Models;
 
 
 interface CustomDataInterface
