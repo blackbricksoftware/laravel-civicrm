@@ -5,13 +5,18 @@ namespace BlackBrickSoftware\LaravelCiviCRM\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LocationType extends Model
 {
     use HasFactory;
 
     protected $table = 'civicrm_location_type';
+
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
+    }
 
     public function scopeReserved(Builder $query): Builder
     {

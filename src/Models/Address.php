@@ -15,10 +15,7 @@ class Address extends Model
 
     public function locationType(): BelongsTo
     {
-        $relation = $this->belongsTo(OptionValue::class, 'activity_type_id', 'value');
-        $query = $relation->getQuery();
-        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'activity_type'));
-        return $relation;
+        return $this->belongsTo(LocationType::class);
     }
 
     public function contact(): BelongsTo
