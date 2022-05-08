@@ -5,7 +5,6 @@ namespace BlackBrickSoftware\LaravelCiviCRM\Traits;
 use BlackBrickSoftware\LaravelCiviCRM\Models\OptionValue;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -41,7 +40,7 @@ trait MultipleOptionValueColumn {
     return $this->getRelation($relationName);
   }
 
-  protected function createMultipleOptionValueQuery(string $columnName, string $optionGroupName): Model
+  protected function createMultipleOptionValueQuery(string $columnName, string $optionGroupName): Builder
   {
     $values = $this->decodeMultipleValueColumn($this->$columnName);
     return OptionValue::whereIn('value', $values)
