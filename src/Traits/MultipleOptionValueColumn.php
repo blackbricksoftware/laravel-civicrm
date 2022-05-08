@@ -43,7 +43,9 @@ trait MultipleOptionValueColumn {
   protected function createMultipleOptionValueQuery(string $columnName, string $optionGroupName): Builder
   {
     $values = $this->decodeMultipleValueColumn($this->$columnName);
+    $connection = $this->getConnection();
     return OptionValue::whereIn('value', $values)
+      ->setConnection($connection)
       ->whereHas('optionGroup', fn(Builder $q) => $q->where('name', $optionGroupName));
   }
 }
