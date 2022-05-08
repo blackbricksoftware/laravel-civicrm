@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Contact extends Model
 {
-    use MultipleValueColumn, HasFactory;
+    use MultipleOptionValueColumn, HasFactory;
 
     protected $table = 'civicrm_contact';
 
