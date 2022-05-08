@@ -39,7 +39,7 @@ class Contact extends Model
         return $relation;
     }
 
-    public function preferredCommunicationMethods()
+    public function preferredCommunicationMethods(): Builder
     {
         return $this->createMultipleOptionValueQuery('preferred_communication_method', 'preferred_communication_method');
     }
