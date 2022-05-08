@@ -44,8 +44,9 @@ trait MultipleOptionValueColumn {
   {
     $values = $this->decodeMultipleValueColumn($this->$columnName);
     $connection = $this->getConnection();
-    return OptionValue::whereIn('value', $values)
+    return (new OptionValue)
       ->setConnection($connection)
+      ->whereIn('value', $values)
       ->whereHas('optionGroup', fn(Builder $q) => $q->where('name', $optionGroupName));
   }
 }
