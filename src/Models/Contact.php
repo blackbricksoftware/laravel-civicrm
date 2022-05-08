@@ -114,6 +114,11 @@ class Contact extends Model
         return $this->hasMany(Phone::class);
     }
 
+    public function websites(): HasMany
+    {
+        return $this->hasMany(Website::class);
+    }
+
     public function activities(): BelongsToMany
     {
         return $this->belongsToMany(Activity::class, ActivityContact::class);
