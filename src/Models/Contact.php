@@ -6,6 +6,7 @@ use BlackBrickSoftware\LaravelCiviCRM\Scopes\SoftDeletesScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -18,6 +19,78 @@ class Contact extends Model
     protected static function booted()
     {
         static::addGlobalScope(new SoftDeletesScope);
+    }
+
+    public function prefix(): BelongsTo
+    {
+        $relation = $this->belongsTo(OptionValue::class, 'prefix_id', 'value');
+        $query = $relation->getQuery();
+        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'individual_prefix'));
+        return $relation;
+    }
+
+    public function suffix(): BelongsTo
+    {
+        $relation = $this->belongsTo(OptionValue::class, 'suffix_id', 'value');
+        $query = $relation->getQuery();
+        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'individual_suffix'));
+        return $relation;
+    }
+
+    // @todo
+    // public function preferredCommunicationMethods(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(OptionValue::class);
+    // }
+
+    public function communicationStyle(): BelongsTo
+    {
+        $relation = $this->belongsTo(OptionValue::class, 'communication_style_id', 'value');
+        $query = $relation->getQuery();
+        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'communication_style'));
+        return $relation;
+    }
+
+    public function emailGreeting(): BelongsTo
+    {
+        $relation = $this->belongsTo(OptionValue::class, 'email_greeting_id', 'value');
+        $query = $relation->getQuery();
+        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'email_greeting'));
+        return $relation;
+    }
+
+    public function postalGreeting(): BelongsTo
+    {
+        $relation = $this->belongsTo(OptionValue::class, 'postal_greeting_id', 'value');
+        $query = $relation->getQuery();
+        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'postal_greeting'));
+        return $relation;
+    }
+
+    public function addressee(): BelongsTo
+    {
+        $relation = $this->belongsTo(OptionValue::class, 'addressee_id', 'value');
+        $query = $relation->getQuery();
+        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'addressee'));
+        return $relation;
+    }
+
+    public function gender(): BelongsTo
+    {
+        $relation = $this->belongsTo(OptionValue::class, 'gender_id', 'value');
+        $query = $relation->getQuery();
+        $query->whereHas('optionGroup', fn(Builder $q) => $q->where('name', 'gender'));
+        return $relation;
+    }
+
+    public function primaryContact(): BelongsTo
+    {
+        return $this->belongsTo(Contact::class, 'primary_contact_id');
+    }
+
+    public function employee(): BelongsTo
+    {
+        return $this->belongsTo(Contact::class, 'employer_id');
     }
 
     public function addresses(): HasMany
