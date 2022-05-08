@@ -100,7 +100,7 @@ class Contact extends Model
 
     public function emails(): HasMany
     {
-        return $this->hasMany(Phone::class);
+        return $this->hasMany(Email::class);
     }
 
     public function phones(): HasMany
