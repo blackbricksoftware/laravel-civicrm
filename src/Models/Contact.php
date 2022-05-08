@@ -3,7 +3,10 @@
 namespace BlackBrickSoftware\LaravelCiviCRM\Models;
 
 use BlackBrickSoftware\LaravelCiviCRM\Scopes\SoftDeletesScope;
+use BlackBrickSoftware\LaravelCiviCRM\Traits\MultipleValueColumn;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Contact extends Model
 {
-    use HasFactory;
+    use MultipleValueColumn, HasFactory;
 
     protected $table = 'civicrm_contact';
 
@@ -37,11 +40,15 @@ class Contact extends Model
         return $relation;
     }
 
-    // @todo
-    // public function preferredCommunicationMethods(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(OptionValue::class);
-    // }
+    public function preferredCommunicationMethods()
+    {
+        return $this->createMultipleOptionValueQuery('preferred_communication_method', 'preferred_communication_method');
+    }
+    
+    public function getPreferredCommunicationMethodsAttribute(): Collection
+    {
+        return $this->createMultipleOptionValueAttribute('preferred_communication_method', 'preferred_communication_method');
+    }
 
     public function communicationStyle(): BelongsTo
     {
