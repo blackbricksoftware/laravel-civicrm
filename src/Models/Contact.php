@@ -3,7 +3,7 @@
 namespace BlackBrickSoftware\LaravelCiviCRM\Models;
 
 use BlackBrickSoftware\LaravelCiviCRM\Scopes\SoftDeletesScope;
-use BlackBrickSoftware\LaravelCiviCRM\Traits\MultipleOptionValueColumn;
+use BlackBrickSoftware\LaravelCiviCRM\Traits\HasMultipleOptionValueColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Contact extends Model
 {
-    use MultipleOptionValueColumn, HasFactory;
+    use HasMultipleOptionValueColumn, HasFactory;
 
     protected $table = 'civicrm_contact';
 

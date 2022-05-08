@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
  * Handle Multiple valued columns
  * Loosely based on: https://stackoverflow.com/a/27900746
  */
-trait MultipleOptionValueColumn {
+trait HasMultipleOptionValueColumn {
 
   protected function decodeMultipleValueColumn(string $value): Collection
   {
