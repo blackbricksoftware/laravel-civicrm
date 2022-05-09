@@ -4,6 +4,32 @@ A collection of tools to access [CiviCRM](https://civicrm.org/) data directly in
 
 Currently, this is just a collection of models representing the CiviCRM data structures being used for an ETL tool.
 
+## Install Setup
+
+Install the package with the following command `composer require blackbricksoftware/laravel-civicrm`. 
+
+Publish the service provider `php artisan vendor:publish --provider="BlackBrickSoftware\LaravelCiviCRM\LaravelCiviCRMServiceProvider`.
+
+Add `BlackBrickSoftware\LaravelCiviCRM\LaravelCiviCRMServiceProvider::class` to `providers` in `app/config/app.php` similar to:
+
+```php
+'providers' => [
+
+    /*
+     * Laravel Framework Service Providers...
+     */
+    Illuminate\Auth\AuthServiceProvider::class,
+    Illuminate\Broadcasting\BroadcastServiceProvider::class,
+    // ...
+
+    /*
+     * Package Service Providers...
+     */
+    BlackBrickSoftware\LaravelCiviCRM\LaravelCiviCRMServiceProvider::class,
+    // ...
+];
+```
+
 ## Defining Custom Data relationships
 
 Start by creating a model for the custom data table and implement `\BlackBrickSoftware\LaravelCiviCRM\Models\CustomDataInterface`. For example:

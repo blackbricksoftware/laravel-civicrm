@@ -16,7 +16,7 @@ class LaravelCiviCRMServiceProvider extends ServiceProvider
   {
     $this->publishes([
       __DIR__ . '/../config/laravel_civicrm.php' => config_path('laravel_civicrm.php'),
-    ], 'laravel-migration-builder-config');
+    ], 'laravel-civicrm-config');
   }
 
   /**
