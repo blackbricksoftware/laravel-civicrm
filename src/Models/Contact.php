@@ -18,6 +18,13 @@ class Contact extends Model
 
     protected $table = 'civicrm_contact';
 
+    protected $casts = [
+        'birth_date' => 'datetime:Y-m-d',
+        'deceased_date' => 'datetime:Y-m-d',
+        'created_date' => 'datetime:Y-m-d H:i:s',
+        'modified_date' => 'datetime:Y-m-d H:i:s',
+    ];
+
     protected static function booted()
     {
         static::addGlobalScope(new SoftDeletesScope);

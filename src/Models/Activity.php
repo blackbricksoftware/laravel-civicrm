@@ -16,6 +16,12 @@ class Activity extends Model
 
     protected $table = 'civicrm_activity';
 
+    protected $casts = [
+        'activity_date_time' => 'datetime:Y-m-d',
+        'created_date' => 'datetime:Y-m-d H:i:s',
+        'modified_date' => 'datetime:Y-m-d H:i:s',
+    ];
+
     protected static function booted()
     {
         static::addGlobalScope(new SoftDeletesScope);
