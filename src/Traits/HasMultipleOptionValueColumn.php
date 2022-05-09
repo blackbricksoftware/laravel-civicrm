@@ -6,6 +6,7 @@ use BlackBrickSoftware\LaravelCiviCRM\Models\OptionValue;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -14,9 +15,9 @@ use Illuminate\Support\Str;
  */
 trait HasMultipleOptionValueColumn {
 
-  protected function decodeMultipleValueColumn(string $value): Collection
+  protected function decodeMultipleValueColumn(?string $value): Collection
   {
-    return Str::of($value)
+    return Str::of($value ?? '')
       ->explode(chr(1))
       ->unique()
       ->filter();
@@ -44,9 +45,15 @@ trait HasMultipleOptionValueColumn {
   {
     $values = $this->decodeMultipleValueColumn($this->$columnName);
     $connectionName = $this->getConnectionName();
-    return (new OptionValue)
+    $q = (new OptionValue)
       ->setConnection($connectionName)
-      ->whereIn('value', $values)
-      ->whereHas('optionGroup', fn(Builder $q) => $q->where('name', $optionGroupName));
+      ->whereHas('optionGroup', fn (Builder $q) => $q->where('name', $optionGroupName));
+    if ($values->count()>0) {
+      $q->whereIn('value', $values);
+    } else {
+      // Always fail
+      $q->where(DB::raw('1'), '=', DB::raw('0'));
+    }
+    return $q;
   }
 }
