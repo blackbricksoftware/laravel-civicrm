@@ -3,7 +3,7 @@
     "description": "Tools for using CiviCRM data inside Laravel.",
     "type": "library",
     "require": {
-        "php": "^8.0.2",
+        "php": ">=8.0.2",
         "illuminate/database": "^9.11",
         "illuminate/support": "^9.11"
     },
